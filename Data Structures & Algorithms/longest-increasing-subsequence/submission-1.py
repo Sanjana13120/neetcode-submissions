@@ -26,7 +26,7 @@ class Solution:
           
     
 '''
-tc: O(logn)
+tc: O(nlogn)
 sc: O(n)
 
 optimal soln: Binary search
