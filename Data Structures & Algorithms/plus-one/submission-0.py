@@ -7,9 +7,10 @@ class Solution:
 
         total = int(str_num) + 1
 
-        
-        
         return [int(digit) for digit in str(total)]
+        # return list(map(int, str(total)))
+
+
 
 
 """
