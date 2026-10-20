@@ -26,6 +26,48 @@ sc: O(n)
 
 goal - Return the area of the largest rectangle
 
+1. Approach
+Use a monotonic increasing stack to store indices of bars.
+Calculate rectangle areas when a shorter bar is encountered.
+After the main loop, process any remaining indices because their rectangles may extend to the end of the histogram.
+
+2. Intuition
+For each bar, find the maximum width over which a rectangle of that bar's height can extend.
+
+Right boundary: The first shorter bar to the right.
+Left boundary: The nearest shorter bar to the left.
+If no shorter bar exists on the left, the rectangle can start at index 0.
+If no shorter bar exists on the right, the rectangle can extend to the last index.
+
+Formula:
+
+Area = height × width
+
+When a bar is popped during the main loop:
+If the stack is nonempty: width = i - stack[-1] - 1
+If the stack is empty: width = i
+
+When processing remaining bars after the main loop:
+If the stack is nonempty: width = n - stack[-1] - 1
+If the stack is empty: width = n
+Here, n = len(heights).
+
+3. Algorithm
+Initialize an empty stack and maxarea = 0.
+Iterate through each index i.
+While the stack is nonempty and the current height is less than the height at the stack's top:
+        Pop the index.
+        Calculate the rectangle's width and area.
+        Update maxarea.
+Push the current index.
+Process all remaining stack indices, using the end of the histogram as the right boundary.
+Return maxarea.
+
+4. Why are there two loops?
+First loop: Calculates areas when a shorter bar establishes the right boundary.
+Second loop: Handles bars that never encounter a shorter bar to their right.
+Without the second loop, some maximum rectangle areas may never be calculated.
+
 
 Input: heights = [7,1,7,2,2,4]
 
