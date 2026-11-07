@@ -18,6 +18,9 @@ class Solution:
 
 
 """
+tc: O(1)
+sc: O(1)
+
 goal - sum of interger without + opr
 
 Approach: Bit Manipulation
